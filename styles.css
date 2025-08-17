@@ -290,6 +290,9 @@ html {
 .hero-buttons {
   display: flex;
   gap: 1rem;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .btn {

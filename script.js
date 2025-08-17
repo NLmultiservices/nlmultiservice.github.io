@@ -108,11 +108,13 @@ function createFloatingElements() {
 }
 
 // Smooth scrolling for navigation links
+// Fix: Only override default for in-page anchor links, not for empty or external
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
+    const href = this.getAttribute("href");
+    if (href && href.length > 1 && document.querySelector(href)) {
+      e.preventDefault();
+      const target = document.querySelector(href);
       target.scrollIntoView({
         behavior: "smooth",
         block: "start",
